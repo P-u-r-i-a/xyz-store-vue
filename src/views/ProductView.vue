@@ -1,4 +1,7 @@
 <template>
+  <RouterLink :to="{ name: 'productList' }">
+    <p>Home Page</p>
+  </RouterLink>
   <div v-if="product">
     <div>
       <label for="currency">Currency</label>
