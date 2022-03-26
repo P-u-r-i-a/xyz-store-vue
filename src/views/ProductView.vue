@@ -3,7 +3,7 @@
     <h1>{{ product.name }}</h1>
     <p>{{ product.description }}</p>
     <p class="product-price">
-      {{ `${product.price.amount} ${product.price.base}` }}
+      {{ getProductPrice(product) }}
     </p>
     <hr />
     <h2>Related Products</h2>
@@ -16,7 +16,7 @@
             <p class="product-title">{{ relatedProduct.name }}</p>
           </RouterLink>
           <p class="product-price">
-            {{ `${relatedProduct.price.amount} ${relatedProduct.price.base}` }}
+            {{ getProductPrice(relatedProduct) }}
           </p>
         </div>
       </li>
@@ -24,8 +24,11 @@
   </div>
 </template>
 <script>
+import getProductPrice from "../mixins/getProductPrice";
+
 export default {
   props: ["id"],
+  mixins: [getProductPrice],
   data() {
     return {
       product: null,

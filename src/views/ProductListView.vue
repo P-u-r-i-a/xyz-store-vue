@@ -6,14 +6,17 @@
         <p class="product-title">{{ product.name }}</p>
       </RouterLink>
       <p class="product-price">
-        {{ `${product.price.amount} ${product.price.base}` }}
+        {{ getProductPrice(product) }}
       </p>
     </li>
   </ul>
 </template>
 
 <script>
+import getProductPrice from "../mixins/getProductPrice";
+
 export default {
+  mixins: [getProductPrice],
   data() {
     return {
       products: [],

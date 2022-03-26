@@ -30,6 +30,19 @@ const store = createStore({
 
       return product;
     },
+    getProductPrice: (state, getters) => (product) => {
+      let price = product.price.amount;
+      if (product.price.base !== state.currency) {
+        price =
+          product.price.amount /
+          getters.getActiveCurrencyWithRates.rates[product.price.base];
+      }
+
+      return `${price.toFixed(2)} ${state.currency}`;
+    },
+    getActiveCurrencyWithRates(state) {
+      return state.rates.find((rate) => rate.base == state.currency);
+    },
   },
 });
 
