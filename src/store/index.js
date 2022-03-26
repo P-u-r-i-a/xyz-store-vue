@@ -22,7 +22,15 @@ const store = createStore({
       commit("setRates", rates);
     },
   },
-  getters: {},
+  getters: {
+    getProductById: (state) => (id) => {
+      let product = state.products.find((product) => {
+        return product.id == id;
+      });
+
+      return product;
+    },
+  },
 });
 
 export default store;
