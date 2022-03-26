@@ -6,6 +6,7 @@ import rates from "../fake-api/exchange_rates.json";
 const store = createStore({
   state: {
     products: [],
+    rates: [],
     currency: "USD",
   },
   mutations: {

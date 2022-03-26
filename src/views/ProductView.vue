@@ -48,13 +48,15 @@ export default {
     };
   },
   created() {
-    if (this.$store.state.products || this.$store.state.rates) {
+    if (!this.$store.state.products.length) {
       this.$store.dispatch("fetchData");
     }
   },
   mounted() {
     this.product = this.$store.getters["getProductById"](this.id);
-    this.handleRelatedProducts();
+    if (this.product) {
+      this.handleRelatedProducts();
+    }
   },
   methods: {
     handleRelatedProducts() {
