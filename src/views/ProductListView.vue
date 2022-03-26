@@ -1,6 +1,39 @@
 <template>
-  <h1>Product List</h1>
+  <h1>Welcome to XYZ Store!</h1>
+  <ul>
+    <li v-for="product in products" :key="product.id">
+      <RouterLink :to="{ name: 'product', params: { id: product.id } }">
+        <p class="product-title">{{ product.name }}</p>
+      </RouterLink>
+      <p class="product-price">
+        {{ `${product.price.amount} ${product.price.base}` }}
+      </p>
+    </li>
+  </ul>
 </template>
 
-<style>
+<script>
+export default {
+  data() {
+    return {
+      products: [],
+    };
+  },
+  created() {
+    this.$store.dispatch("fetchData");
+  },
+  mounted() {
+    this.products = this.$store.state.products;
+  },
+};
+</script>
+<style scoped>
+.product-title {
+  font-size: 1.5rem;
+}
+
+.product-price {
+  color: tomato;
+  font-family: sans-serif;
+}
 </style>
