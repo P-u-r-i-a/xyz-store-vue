@@ -15,6 +15,9 @@ const store = createStore({
     setRates(state, rates) {
       state.rates = rates;
     },
+    setActiveCurrency(state, currency) {
+      state.currency = currency;
+    },
   },
   actions: {
     fetchData({ commit }) {

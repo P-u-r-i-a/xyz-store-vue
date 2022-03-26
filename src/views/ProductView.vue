@@ -1,5 +1,13 @@
 <template>
   <div v-if="product">
+    <div>
+      <label for="currency">Currency</label>
+      <select name="currency" id="currency" v-model="currency">
+        <option value="USD">USD</option>
+        <option value="AUD">AUD</option>
+        <option value="CNY">CNY</option>
+      </select>
+    </div>
     <h1>{{ product.name }}</h1>
     <p>{{ product.description }}</p>
     <p class="product-price">
@@ -25,10 +33,11 @@
 </template>
 <script>
 import getProductPrice from "../mixins/getProductPrice";
+import currency from "../mixins/currency";
 
 export default {
   props: ["id"],
-  mixins: [getProductPrice],
+  mixins: [getProductPrice, currency],
   data() {
     return {
       product: null,
